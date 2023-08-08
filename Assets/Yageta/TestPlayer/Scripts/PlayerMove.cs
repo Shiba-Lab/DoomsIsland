@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
-    public float jumpForce = 5.0f;
-    public float rotationSpeed = 2.0f;
+    public float moveSpeed = 5f;
+    public float jumpForce = 10f;
+    public float rotationSpeed = 3f;
 
-    private CharacterController characterController;
-    private Vector3 moveDirection;
-    private float ySpeed = 0.0f;
+    private Rigidbody rb;
+    private bool isGrounded = true;
 
     public GameObject bulletGeneratePoint;
     public GameObject bullet;
@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         LockCursor();
-        characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -34,38 +34,25 @@ public class PlayerMove : MonoBehaviour
     private void Move()
     {
 
-        // Calculate movement
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 forwardMovement = transform.forward * verticalInput;
         Vector3 rightMovement = transform.right * horizontalInput;
-        moveDirection = (forwardMovement + rightMovement).normalized;
+        Vector3 moveDirection = (forwardMovement + rightMovement).normalized;
+        Vector3 moveVelocity = moveDirection * moveSpeed;
+        rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
 
-        // Apply rotation based on mouse input
+        // キャラクタの回転
         float mouseX = Input.GetAxis("Mouse X");
-        Vector3 rotation = new Vector3(0, mouseX * rotationSpeed, 0);
-        transform.Rotate(rotation);
+        Vector3 rotation = new Vector3(0f, mouseX, 0f) * rotationSpeed;
+        rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
 
-        // Apply gravity
-        if (characterController.isGrounded)
+        // ジャンプ
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            ySpeed = 0.0f;
-
-            // Jump
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ySpeed = jumpForce;
-            }
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-        else
-        {
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-        }
-
-        // Apply movement and gravity to the character controller
-        moveDirection.y = ySpeed;
-        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
 
     void Shoot()
@@ -86,5 +73,21 @@ public class PlayerMove : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //isCursorLocked = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 }

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 54346281}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,6 +331,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1876504080205972612, guid: 20023c306893c97488543ca6591fe460, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 3293725506129813342, guid: 20023c306893c97488543ca6591fe460, type: 3}
       propertyPath: m_Name
       value: Player
@@ -377,15 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4991527781886246736, guid: 20023c306893c97488543ca6591fe460, type: 3}
       propertyPath: jumpForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4991527781886246736, guid: 20023c306893c97488543ca6591fe460, type: 3}
-      propertyPath: moveSpeed
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4991527781886246736, guid: 20023c306893c97488543ca6591fe460, type: 3}
-      propertyPath: bulletSpeed
-      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
