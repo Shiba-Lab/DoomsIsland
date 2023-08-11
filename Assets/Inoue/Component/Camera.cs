@@ -11,13 +11,13 @@ public class Camera : MonoBehaviour
         float my = Input.GetAxis("Mouse Y");
         if(Mathf.Abs(mx) > 0.001f)
         {
-            //y回転軸はワールド座標のy軸
-            transform.RotateAround(player.transform.position, Vector3.up, 1.8f * mx);
+            //y回転軸はワールド座標のx軸
+            transform.RotateAround(player.transform.position, Vector3.up, 1.8f*mx);
         }
         if(Mathf.Abs(my) > 0.001f)
         {
             //x回転軸は自身のx軸
-            transform.RotateAround(player.transform.position, transform.right, -1.8f * my);
+            transform.RotateAround(player.transform.position, transform.right, -1.8f*my);
         }
     }
 }
