@@ -253,7 +253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 192788, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 193908, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Name
@@ -312,6 +312,10 @@ PrefabInstance:
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
         by Humanoid clips.\n\tFrom animation clip 'Rifle Walk Backward'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 13783508, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
