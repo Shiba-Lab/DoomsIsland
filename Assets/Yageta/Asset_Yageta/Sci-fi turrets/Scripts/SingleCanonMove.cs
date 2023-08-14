@@ -28,9 +28,9 @@ public class SingleCannonMove : MonoBehaviour
     [SerializeField] float searchDistance;
     [Tooltip("索敵時間（秒）\n" + "時間内にターゲットが見つからなければ非戦闘状態へ")]
     [SerializeField] float searchTime;
-    [Tooltip("索敵範囲の最小角度（上下方向，左右方向）\n" + "左右方向の回転は，180度が正面")]
+    [Tooltip("非戦闘状態時の索敵範囲の最小角度（上下方向，左右方向）\n" + "左右方向の回転は，180度が正面")]
     [SerializeField] Vector2 searchRotateMin;
-    [Tooltip("索敵範囲の最大角度（上下方向，左右方向）\n" + "左右方向の回転は，180度が正面")]
+    [Tooltip("非戦闘状態時の索敵範囲の最大角度（上下方向，左右方向）\n" + "左右方向の回転は，180度が正面")]
     [SerializeField] Vector2 searchRotateMax;
 
 
@@ -156,21 +156,28 @@ public class SingleCannonMove : MonoBehaviour
     /// <param name="target">索敵対象</param>
     void SerchTarget(GameObject target)
     {
+        if(cannonState == CannonState.clear)
+        {
+            Vector3 posDif = target.transform.position - lidar.transform.position;   //グローバル座標での位置差を取得
+            float distanceLocalZ = Mathf.Sqrt(Mathf.Pow(posDif.x, 2) + Mathf.Pow(posDif.z, 2)); //ローカル座標のZ方向の距離を取得
+            float angleX = Mathf.Atan2(posDif.y, distanceLocalZ) * Mathf.Rad2Deg;    //対象物とのX回転角度を計算
+            float angleY = Mathf.Atan2(posDif.x, posDif.z) * Mathf.Rad2Deg;         //対象物とのY回転角度を計算
+
+
+            angleX = Mathf.Clamp(angleX, searchRotateMin.x, searchRotateMax.x);   //X回転を最大値・最小値でクランプ
+            if (angleY >= 0 && angleY < searchRotateMax.y) angleY = searchRotateMax.y;    //Y回転を最大値・最小値でクランプ
+            else if (angleY < 0 && angleY > searchRotateMin.y) angleY = searchRotateMin.y;
+
+            angleX = Mathf.Repeat(-angleX, 360);    //-180～180表記を0～360表記に変換（回転方向を反転）
+            angleY = Mathf.Repeat(angleY, 360);     //-180～180表記を0～360表記に変換
+
+            lidar.transform.eulerAngles = new Vector3(angleX, angleY, 0);
+        }
+        else
+        {
+            lidar.transform.LookAt(target.transform.position);
+        }
         
-        Vector3 posDif = target.transform.position - lidar.transform.position;   //グローバル座標での位置差を取得
-        float distanceLocalZ = Mathf.Sqrt(Mathf.Pow(posDif.x, 2) + Mathf.Pow(posDif.z, 2)); //ローカル座標のZ方向の距離を取得
-        float angleX = Mathf.Atan2(posDif.y, distanceLocalZ) * Mathf.Rad2Deg;    //対象物とのX回転角度を計算
-        float angleY = Mathf.Atan2(posDif.x, posDif.z) * Mathf.Rad2Deg;         //対象物とのY回転角度を計算
-
-
-        angleX = Mathf.Clamp(angleX, searchRotateMin.x, searchRotateMax.x);   //X回転を最大値・最小値でクランプ
-        if (angleY >= 0 && angleY < searchRotateMax.y) angleY = searchRotateMax.y;    //Y回転を最大値・最小値でクランプ
-        else if (angleY < 0 && angleY > searchRotateMin.y) angleY = searchRotateMin.y;
-
-        angleX = Mathf.Repeat(-angleX, 360);    //-180～180表記を0～360表記に変換（回転方向を反転）
-        angleY = Mathf.Repeat(angleY, 360);     //-180～180表記を0～360表記に変換
-
-        lidar.transform.eulerAngles = new Vector3(angleX, angleY, 0);
 
 
         /*  索敵範囲を銃口が向いている角度+-制限値に設定するスクリプト（開発途中）
