@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
 
-public class SingleCanonDamage : MonoBehaviour
+public class SingleCannonDamage : MonoBehaviour
 {
     [SerializeField] float damage;
     [SerializeField] GameObject singleCanon;
-    SingleCanonHp singleCanonHp;
+    SingleCannonHp singleCannonHp;
 
     // Start is called before the first frame update
     void Start()
     {
-        singleCanonHp = singleCanon.GetComponent<SingleCanonHp>();
+        singleCannonHp = singleCanon.GetComponent<SingleCannonHp>();
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class SingleCanonDamage : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            singleCanonHp.GetDamage(damage);
+            singleCannonHp.GetDamage(damage);
             Destroy(collision.gameObject);
         }
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318163648549141459}
   m_Layer: 0
-  m_Name: DoubleCanon
+  m_Name: DoubleCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Found
       objectReference: {fileID: 0}
+    - target: {fileID: 8410380463269071203, guid: 0799863ce3735fc4b983669a1f28220c, type: 3}
+      propertyPath: m_Name
+      value: CannonBottom
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -119,7 +123,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000010153274142, guid: 2652172d138981b4abc806ea8ec36564, type: 3}
       propertyPath: m_Name
-      value: Canon
+      value: Cannon
       objectReference: {fileID: 0}
     - target: {fileID: 4000012604501588, guid: 2652172d138981b4abc806ea8ec36564, type: 3}
       propertyPath: m_LocalScale.x

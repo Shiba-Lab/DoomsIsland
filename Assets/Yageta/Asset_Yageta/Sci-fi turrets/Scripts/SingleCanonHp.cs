@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleCanonHp : MonoBehaviour
+public class SingleCannonHp : MonoBehaviour
 {
     [SerializeField] float maxHp;
     [SerializeField] float currentHp;
