@@ -28,10 +28,8 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
         eyer = eye.transform.eulerAngles;
-        //var inputX = Input.GetAxis("Horizontal");
-        //var inputY = Input.GetAxis("Vertical");
+
         if (Input.GetKey(KeyCode.D))
         {
             x = 1;
