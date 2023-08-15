@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 using CustomSystem;
 using UnityEditor;
 
-public class SingleCannonMove : MonoBehaviour
+public class DoubleCannonMove : MonoBehaviour
 {
     GameObject player;
 
