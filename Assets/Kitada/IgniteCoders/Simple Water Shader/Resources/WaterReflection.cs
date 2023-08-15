@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaterReflection : MonoBehaviour
 {
+    /*
     // referenses
     Camera mainCamera;
     Camera reflectionCamera;
@@ -91,5 +92,5 @@ public class WaterReflection : MonoBehaviour
 
             reflectionCamera.targetTexture = outputTexture;
         }
-    }
+    }*/
 }
