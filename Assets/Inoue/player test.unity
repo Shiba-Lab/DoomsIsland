@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659258
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_LocalRotation.x
@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.2588191
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_LocalRotation.z
@@ -293,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -309,9 +309,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: def66c81b55f904429dcdaacde8c1760, type: 2}
     - target: {fileID: 9530324, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tFrom animation clip 'Rifle Walk Backward'"
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9530324, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 13783508, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Enabled
@@ -324,6 +326,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 193908, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 345658582}
+    - targetCorrespondingSourceObject: {fileID: 193908, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 345658586}
   m_SourcePrefab: {fileID: 100100000, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
 --- !u!1 &345658581 stripped
 GameObject:
@@ -342,13 +347,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c8e2c2a7d403a4285f4fd9cbdc5c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 4
   eye: {fileID: 47013965}
 --- !u!4 &345658584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
   m_PrefabInstance: {fileID: 345658580}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &345658586
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345658581}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1256446730
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,13 +691,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621000735}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0093121, y: -0.2588071, z: 0.0024951713, w: 0.965881}
+  m_LocalRotation: {x: 0.009642751, y: 0, z: 0, w: 0.9999535}
   m_LocalPosition: {x: 1.6999999, y: 0.92000014, z: -2.0490003}
   m_LocalScale: {x: 1.551783, y: 1.4820304, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 47013970}
-  m_LocalEulerAnglesHint: {x: 1.105, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.105, y: 0, z: 0}
 --- !u!114 &1621000739
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Animator animator;
+    private Rigidbody rb;
 
     [SerializeField] float speed;
     [SerializeField] GameObject eye;
@@ -23,8 +24,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        rb = GetComponent<Rigidbody>();
     }
-    void Update()
+    void FixedUpdate()
     {
         
         eyer = eye.transform.eulerAngles;
@@ -52,6 +54,8 @@ public class PlayerController : MonoBehaviour
         var velocity = speed * leftStick;
 
         this.transform.eulerAngles = eyer;
+
+        rb.velocity = transform.TransformDirection(speed * leftStick);
 
         animator.SetFloat(hashFront, velocity.z, 0.1f, Time.deltaTime);
         animator.SetFloat(hashSide, velocity.x, 0.1f, Time.deltaTime);
