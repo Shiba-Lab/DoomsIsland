@@ -71,8 +71,6 @@ public class SingleCannonMove : MonoBehaviour
         animator = cannonTop.GetComponent<Animator>();
 
         CustomPhysics.IgnoreCollisions(ignoreCollisionObjects); //配列内のオブジェクトのコライダーを非干渉にする．
-        
-
     }
 
     // Update is called once per frame
