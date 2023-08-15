@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 4900183826164638832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0013000001, y: 0.44913745, z: -0.1810481}
-  m_LocalScale: {x: 0.045, y: 0.045, z: 0.02}
+  m_LocalPosition: {x: -0.0018, y: 0.44913745, z: -0.1810481}
+  m_LocalScale: {x: 0.065, y: 0.055, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6427044707383571318}
@@ -212,16 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bd02d8258e73b44aea114616b8bc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 1
-  normalBulletSpeed: 500
-  cannonRotateSpeed: 200
-  cannonRotateMin: {x: -40, y: -20}
-  cannonRotateMax: {x: 50, y: 20}
-  heightCorrectionVal: -1
-  searchDistance: 100
-  searchTime: 3
-  searchRotateMin: {x: -50, y: -120}
-  searchRotateMax: {x: 50, y: 120}
+  scriptableObject: {fileID: 11400000, guid: 237653058cb2e4140b22520ccf53b273, type: 2}
   normalBullet: {fileID: 3441031392790940429, guid: b0fc237e886df0844be19afa7edbe790, type: 3}
   bulletGeneratePoint: {fileID: 7208066879450291681}
   cannonBottom: {fileID: 6430237981946583108}
@@ -245,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6478674fca3e9419537075bb04c684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  scriptableObject: {fileID: 11400000, guid: 237653058cb2e4140b22520ccf53b273, type: 2}
   currentHp: 0
 --- !u!1 &6463117057737537916
 GameObject:
@@ -365,8 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac64cfd8995b58448271231e9492459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  scriptableObject: {fileID: 11400000, guid: 237653058cb2e4140b22520ccf53b273, type: 2}
   doubleCanon: {fileID: 6197774927904015901}
+  collisionPart: 3
 --- !u!1 &7208066879450291681
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,13 +385,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7208066879450291681}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0.0007189684, y: 0.38403755, z: 0.6755853}
   m_LocalScale: {x: 0.06536, y: 0.03268, z: 0.06536}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6427044707383571318}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: -180}
 --- !u!33 &2080370137700722801
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -551,8 +543,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac64cfd8995b58448271231e9492459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  scriptableObject: {fileID: 11400000, guid: 237653058cb2e4140b22520ccf53b273, type: 2}
   doubleCanon: {fileID: 6197774927904015901}
+  collisionPart: 0
 --- !u!1001 &6430936725875569498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -623,6 +616,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012604501588, guid: 2652172d138981b4abc806ea8ec36564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 95000012164270796, guid: 2652172d138981b4abc806ea8ec36564, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -708,8 +705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac64cfd8995b58448271231e9492459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  scriptableObject: {fileID: 11400000, guid: 237653058cb2e4140b22520ccf53b273, type: 2}
   doubleCanon: {fileID: 6197774927904015901}
+  collisionPart: 1
 --- !u!1 &6430237983322739402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000013073129872, guid: 2652172d138981b4abc806ea8ec36564, type: 3}
@@ -790,5 +788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac64cfd8995b58448271231e9492459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 7
+  scriptableObject: {fileID: 11400000, guid: 237653058cb2e4140b22520ccf53b273, type: 2}
   doubleCanon: {fileID: 6197774927904015901}
+  collisionPart: 2

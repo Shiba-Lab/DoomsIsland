@@ -11,13 +11,14 @@ public class DroneMove : MonoBehaviour
     [SerializeField] GameObject droneNav;
     [SerializeField] GameObject player;
 
-    [SerializeField] float knockBackDistance;
-    [SerializeField] float knockBackPower;
+    float knockBackDistance;
+    float knockBackPower;
 
-    [SerializeField] float standardAltitude;
-    [SerializeField] float altitudeTolerance;
-    [SerializeField] Vector2 moveSpeed;
+    float standardAltitude;
+    float altitudeTolerance;
+    Vector2 moveSpeed;
 
+    DroneScriptableObject droneScriptableObject;
     YMoveState yMoveState;
 
     
@@ -36,23 +37,35 @@ public class DroneMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        knockBackDistance = droneScriptableObject.knockBackDistance;
+        knockBackPower = droneScriptableObject.knockBackPower;
+        standardAltitude = droneScriptableObject.standardAltitude;
+        altitudeTolerance = droneScriptableObject.altitudeTolerance;
+        moveSpeed = droneScriptableObject.moveSpeed;
+
         agent = droneNav.GetComponent<NavMeshAgent>();
         rb = droneNav.GetComponent<Rigidbody>();
-
+        agent.speed = moveSpeed.x;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(yMoveState);
+        
+
         agent.destination = player.transform.position;
         if (Vector3.Distance(player.transform.position, droneNav.transform.position) < knockBackDistance)
         {
             rb.AddRelativeForce(-Vector3.forward*knockBackPower, ForceMode.Impulse);
         }
 
+
+        droneBody.transform.position = new Vector3(droneNav.transform.position.x, droneBody.transform.position.y, droneNav.transform.position.z);
+        droneBody.transform.LookAt(player.transform.position);
         // 中心座標との距離を計算
         float distanceToCenter = droneBody.transform.position.y-droneNav.transform.position.y;
-
+        Debug.Log(distanceToCenter);
         if (yMoveState == YMoveState.keep)
         {
             // 許容差以上離れている場合
@@ -67,20 +80,28 @@ public class DroneMove : MonoBehaviour
         }
         else
         {
-
-            // 中心座標に向かう方向ベクトルを計算
-            Vector3 moveDirection = yMoveState == YMoveState.goUp? Vector3.up : Vector3.down;
-
-            // 移動速度を考慮して移動量を計算
-            Vector3 moveAmount = moveDirection * moveSpeed.y * Time.deltaTime;
-
-            // 移動
-            transform.Translate(moveAmount);
-
-            // 目標位置に十分に近づいたら移動終了
-            if (Mathf.Abs(distanceToCenter) < altitudeTolerance/10)
+            Vector3 moveAmount;
+            switch (yMoveState)
             {
-                yMoveState = YMoveState.keep;
+                case YMoveState.goDown:
+                    
+                    moveAmount = Vector3.down * moveSpeed.y * Time.deltaTime;
+                    droneBody.transform.Translate(moveAmount);
+                    if (distanceToCenter < standardAltitude)
+                    {
+                        yMoveState = YMoveState.keep;
+                    }
+                    break;
+                case YMoveState.goUp:
+                    moveAmount = Vector3.up * moveSpeed.y * Time.deltaTime;
+                    droneBody.transform.Translate(moveAmount);
+                    if (distanceToCenter > standardAltitude)
+                    {
+                        yMoveState = YMoveState.keep;
+                    }
+                    break;
+
+
             }
         }
     }

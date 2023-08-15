@@ -5,13 +5,33 @@ using UnityEngine;
 
 public class DoubleCannonDamage : MonoBehaviour
 {
-    [SerializeField] float damage;
+    [SerializeField] DoubleCannonScriptableObject scriptableObject;
+    float damage;
     [SerializeField] GameObject doubleCanon;
     DoubleCannonHp doubleCannonHp;
 
+    [SerializeField] Parts collisionPart;
+
+    enum Parts
+    {
+        Found, CannonBottom, CannonTop, Shield
+    }
     // Start is called before the first frame update
     void Start()
     {
+        switch (collisionPart)
+        {
+            case Parts.Found:
+                damage = scriptableObject.foundDamage; break;
+            case Parts.CannonBottom:
+                damage = scriptableObject.bottomDamage; break;
+            case Parts.CannonTop:
+                damage = scriptableObject.topDamage; break;
+            case Parts.Shield:
+                damage = scriptableObject.shieldDamage; break;
+
+        }
+
         doubleCannonHp = doubleCanon.GetComponent<DoubleCannonHp>();
     }
 

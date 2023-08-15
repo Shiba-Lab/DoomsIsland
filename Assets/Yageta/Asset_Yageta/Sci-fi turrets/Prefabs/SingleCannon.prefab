@@ -46,16 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86e5ecbac4e3a8498a00edb54cde168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 1
-  normalBulletSpeed: 500
-  cannonRotateSpeed: 200
-  cannonRotateMin: {x: -40, y: -20}
-  cannonRotateMax: {x: 50, y: 20}
-  heightCorrectionVal: -1
-  searchDistance: 100
-  searchTime: 3
-  searchRotateMin: {x: -50, y: -120}
-  searchRotateMax: {x: 50, y: 120}
+  scriptableObject: {fileID: 11400000, guid: dfab6ecd82edebf4ba6847b2b24d1b1c, type: 2}
   normalBullet: {fileID: 3441031392790940429, guid: b0fc237e886df0844be19afa7edbe790, type: 3}
   bulletGeneratePoint: {fileID: 6022039572297639409}
   cannonBottom: {fileID: 7408415011588762523}
@@ -78,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00006a627cdc534398af755ac70d45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  scriptableObject: {fileID: 11400000, guid: dfab6ecd82edebf4ba6847b2b24d1b1c, type: 2}
   currentHp: 0
 --- !u!1001 &1782218489981963107
 PrefabInstance:
@@ -142,7 +133,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4803831803365226, guid: dae5043c6478aeb48a227bbd6ca7d094, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7404553645945125713}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1178177964436236, guid: dae5043c6478aeb48a227bbd6ca7d094, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8045102557530752622}
   m_SourcePrefab: {fileID: 100100000, guid: dae5043c6478aeb48a227bbd6ca7d094, type: 3}
 --- !u!4 &1777416936665205769 stripped
 Transform:
@@ -154,6 +148,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1178177964436236, guid: dae5043c6478aeb48a227bbd6ca7d094, type: 3}
   m_PrefabInstance: {fileID: 1782218489981963107}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8045102557530752622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783313086574190703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e957d491fc39241bce11e7f5556faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableObject: {fileID: 11400000, guid: dfab6ecd82edebf4ba6847b2b24d1b1c, type: 2}
+  singleCanon: {fileID: 853101872608786563}
+  collisionPart: 0
 --- !u!1001 &4673946623165246375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -206,14 +215,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4879447488891505949, guid: 2893909e5993a3c4e8e6204400d89e84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.702
+      objectReference: {fileID: 0}
     - target: {fileID: 7179095095179960871, guid: 2893909e5993a3c4e8e6204400d89e84, type: 3}
       propertyPath: singleCanon
       value: 
       objectReference: {fileID: 853101872608786563}
+    - target: {fileID: 7179095095179960871, guid: 2893909e5993a3c4e8e6204400d89e84, type: 3}
+      propertyPath: collisionPart
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179095095179960871, guid: 2893909e5993a3c4e8e6204400d89e84, type: 3}
+      propertyPath: scriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: dfab6ecd82edebf4ba6847b2b24d1b1c, type: 2}
     - target: {fileID: 8645812034696897610, guid: 2893909e5993a3c4e8e6204400d89e84, type: 3}
       propertyPath: singleCanon
       value: 
       objectReference: {fileID: 853101872608786563}
+    - target: {fileID: 8645812034696897610, guid: 2893909e5993a3c4e8e6204400d89e84, type: 3}
+      propertyPath: collisionPart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645812034696897610, guid: 2893909e5993a3c4e8e6204400d89e84, type: 3}
+      propertyPath: scriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: dfab6ecd82edebf4ba6847b2b24d1b1c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -10,28 +10,19 @@ using UnityEditor;
 public class DoubleCannonMove : MonoBehaviour
 {
     GameObject player;
+    [SerializeField] DoubleCannonScriptableObject scriptableObject;
 
-    [Tooltip("砲撃間隔（秒）")]
-    [SerializeField] float shootInterval;
-    [Tooltip("通常弾の速度")]
-    [SerializeField] float normalBulletSpeed;
-    [Tooltip("砲台の最大回転速度")]
-    [SerializeField] float cannonRotateSpeed;
-    [Tooltip("砲撃範囲の最小角度（上下方向，左右方向）\n"+"上下方向の回転は，下向きが正\n" + "左右方向の回転は，180度が正面")]
-    [SerializeField] Vector2 cannonRotateMin;
-    [Tooltip("砲撃範囲の最大角度（上下方向，左右方向）\n" + "上下方向の回転は，下向きが正\n" + "左右方向の回転は，180度が正面")]
-    [SerializeField] Vector2 cannonRotateMax;
-    [Tooltip("銃口と銃口回転軸の高さの差による，銃口向きのズレを補正する値\n" + "通常は（CannonTopのy座標 - 銃口の高さ）の値")]
-    [SerializeField] float heightCorrectionVal;
+    float shootInterval;
+    float normalBulletSpeed;
+    float cannonRotateSpeed;
+    Vector2 cannonRotateMin;
+    Vector2 cannonRotateMax;
+    float heightCorrectionVal;
 
-    [Tooltip("索敵の直線距離制限")]
-    [SerializeField] float searchDistance;
-    [Tooltip("索敵時間（秒）\n" + "時間内にターゲットが見つからなければ非戦闘状態へ")]
-    [SerializeField] float searchTime;
-    [Tooltip("非戦闘状態時の索敵範囲の最小角度（上下方向，左右方向）\n" + "左右方向の回転は，180度が正面")]
-    [SerializeField] Vector2 searchRotateMin;
-    [Tooltip("非戦闘状態時の索敵範囲の最大角度（上下方向，左右方向）\n" + "左右方向の回転は，180度が正面")]
-    [SerializeField] Vector2 searchRotateMax;
+    float searchDistance;
+    float searchTime;
+    Vector2 searchRotateMin;
+    Vector2 searchRotateMax;
 
 
 
@@ -62,6 +53,17 @@ public class DoubleCannonMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        shootInterval = scriptableObject.shootInterval;
+        normalBulletSpeed = scriptableObject.normalBulletSpeed;
+        cannonRotateMin = scriptableObject.cannonRotateMin;
+        cannonRotateMax = scriptableObject.cannonRotateMax;
+        cannonRotateSpeed = scriptableObject.cannonRotateSpeed;
+        heightCorrectionVal = scriptableObject.heightCorrectionVal;
+        searchDistance = scriptableObject.searchDistance;
+        searchTime = scriptableObject.searchTime;
+        searchRotateMin = scriptableObject.searchRotateMin;
+        searchRotateMax = scriptableObject.searchRotateMax;
+
         player = GameObject.FindWithTag("Player");  //Playerタグがついているものをplayerとして認識
         isStartedTimer = false;
         cannonState = CannonState.clear;
@@ -115,7 +117,7 @@ public class DoubleCannonMove : MonoBehaviour
         bulletClone.transform.eulerAngles = bulletGeneratePoint.transform.eulerAngles;  //  弾の向きをあわせる
         Vector3 force = bulletGeneratePoint.gameObject.transform.up * normalBulletSpeed;// forceにy軸方向への力を代入する
         bulletClone.GetComponent<Rigidbody>().AddForce(force);// bulletsにforceの分だけ力をかける
-        animator.SetTrigger("Shoot");   //砲撃アニメーションを実行
+        //animator.SetTrigger("Shoot");   //砲撃アニメーションを実行
         Destroy(bulletClone.gameObject, 4);// 作成されてから4秒後に消す
     }
 
@@ -130,14 +132,14 @@ public class DoubleCannonMove : MonoBehaviour
         float distanceLocalZ = Mathf.Sqrt(Mathf.Pow(posDif.x, 2) + Mathf.Pow(posDif.z, 2)); //ローカル座標のZ方向の距離を取得
         float angleX = Mathf.Atan2(posDif.y, distanceLocalZ) * Mathf.Rad2Deg;    //対象物とのX回転角度を計算
         float angleY = Mathf.Atan2(posDif.x, posDif.z) * Mathf.Rad2Deg;         //対象物とのY回転角度を計算
-        Debug.Log(angleX);
+
         angleX = Mathf.Clamp(angleX, cannonRotateMin.x, cannonRotateMax.x);   //X回転を最大値・最小値でクランプ
         if (angleY >= 0 && angleY < cannonRotateMax.y) angleY = cannonRotateMax.y;    //Y回転を最大値・最小値でクランプ
         else if (angleY < 0 && angleY > cannonRotateMin.y) angleY = cannonRotateMin.y;    
 
         angleX = Mathf.Repeat(-angleX, 360);    //-180～180表記を0～360表記に変換（回転方向を反転）
         angleY = Mathf.Repeat(angleY, 360);     //-180～180表記を0～360表記に変換
-        Debug.Log(angleX);
+        
         //cannonTopを指定速度で回転
         cannonTop.transform.localEulerAngles
             = new Vector3(Mathf.MoveTowardsAngle(cannonTop.transform.eulerAngles.x, angleX, cannonRotateSpeed * Time.deltaTime), 0, 0);
