@@ -7,17 +7,31 @@ public class Camera : MonoBehaviour
     [SerializeField] GameObject player;
     void Update()
     {
-        //float mx = Input.GetAxis("Mouse X");
         float my = Input.GetAxis("Mouse Y");
-        //if(Mathf.Abs(mx) > 0.001f)
-        {
-            //y‰ñ“]Ž²‚Íƒ[ƒ‹ƒhÀ•W‚ÌyŽ²
-            //transform.RotateAround(player.transform.position, Vector3.up, 1.8f*mx);
-        }
+
         if(Mathf.Abs(my) > 0.001f)
         {
-            //x‰ñ“]Ž²‚ÍŽ©g‚ÌxŽ²
-            transform.RotateAround(player.transform.position, transform.right, -2.5f*my);
+            if ((this.transform.eulerAngles.x > 45)&&(this.transform.eulerAngles.x < 75))
+            {
+                if (my > 0)
+                {
+                    transform.RotateAround(player.transform.position, transform.right, -2.5f * my);
+                }
+            }
+            else
+            {
+                if ((this.transform.eulerAngles.x < 315)&& (this.transform.eulerAngles.x > 285))
+                {
+                    if (my < 0)
+                    {
+                        transform.RotateAround(player.transform.position, transform.right, -2.5f * my);
+                    }
+                }
+                else
+                {
+                    transform.RotateAround(player.transform.position, transform.right, -2.5f * my);
+                }
+            }
         }
     }
 }

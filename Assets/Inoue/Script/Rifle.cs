@@ -14,7 +14,7 @@ public class Rifle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))//(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             fire.SetBool("Trigger", true);
         }
