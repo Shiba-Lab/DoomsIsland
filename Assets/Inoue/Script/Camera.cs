@@ -5,6 +5,7 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] float sens = 2.5f;
     void Update()
     {
         float my = Input.GetAxis("Mouse Y");
@@ -15,7 +16,7 @@ public class Camera : MonoBehaviour
             {
                 if (my > 0)
                 {
-                    transform.RotateAround(player.transform.position, transform.right, -2.5f * my);
+                    transform.RotateAround(player.transform.position, transform.right, -1 * sens * my);
                 }
             }
             else
@@ -24,12 +25,12 @@ public class Camera : MonoBehaviour
                 {
                     if (my < 0)
                     {
-                        transform.RotateAround(player.transform.position, transform.right, -2.5f * my);
+                        transform.RotateAround(player.transform.position, transform.right, -1 * sens * my);
                     }
                 }
                 else
                 {
-                    transform.RotateAround(player.transform.position, transform.right, -2.5f * my);
+                    transform.RotateAround(player.transform.position, transform.right, -1 * sens * my);
                 }
             }
         }
