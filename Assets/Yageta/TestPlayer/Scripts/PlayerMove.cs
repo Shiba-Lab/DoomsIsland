@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 moveVelocity = moveDirection * moveSpeed;
         rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
 
-        // ƒLƒƒƒ‰ƒNƒ^‚Ì‰ñ“]
+        // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®å›è»¢
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
         Vector3 rotation = new Vector3(0f, mouseX, 0f) * rotationSpeed;
@@ -59,7 +59,7 @@ public class PlayerMove : MonoBehaviour
 
 
 
-        // ƒWƒƒƒ“ƒv
+        // ã‚¸ãƒ£ãƒ³ãƒ—
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -70,11 +70,11 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject bullets = Instantiate(bullet);// bullet‚ğì¬‚µAì¬‚µ‚½‚à‚Ì‚Íbullets‚Æ‚·‚é
-            bullets.transform.position = bulletGeneratePoint.transform.position;// bullets‚ğƒvƒŒƒCƒ„[‚ÌêŠ‚ÉˆÚ“®‚³‚¹‚é
-            Vector3 force = bulletGeneratePoint.gameObject.transform.forward * bulletSpeed;// force‚É‘O•û‚Ö‚Ì—Í‚ğ‘ã“ü‚·‚é
-            bullets.GetComponent<Rigidbody>().AddForce(force);// bullets‚Éforce‚Ì•ª‚¾‚¯—Í‚ğ‚©‚¯‚é
-            Destroy(bullets.gameObject, 4);// ì¬‚³‚ê‚Ä‚©‚ç4•bŒã‚ÉÁ‚·
+            GameObject bullets = Instantiate(bullet);// bulletã‚’ä½œæˆã—ã€ä½œæˆã—ãŸã‚‚ã®ã¯bulletsã¨ã™ã‚‹
+            bullets.transform.position = bulletGeneratePoint.transform.position;// bulletsã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´æ‰€ã«ç§»å‹•ã•ã›ã‚‹
+            Vector3 force = bulletGeneratePoint.gameObject.transform.forward * bulletSpeed;// forceã«å‰æ–¹ã¸ã®åŠ›ã‚’ä»£å…¥ã™ã‚‹
+            bullets.GetComponent<Rigidbody>().AddForce(force);// bulletsã«forceã®åˆ†ã ã‘åŠ›ã‚’ã‹ã‘ã‚‹
+            Destroy(bullets.gameObject, 4);// ä½œæˆã•ã‚Œã¦ã‹ã‚‰4ç§’å¾Œã«æ¶ˆã™
         }
     }
 

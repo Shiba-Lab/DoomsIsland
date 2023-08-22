@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664bb733aa23b224d973f44d1ed43891, type: 3}
   m_Name: DroneSO
   m_EditorClassIdentifier: 
-  knockBackDistance: 5
-  knockBackPower: 30
+  followStoppingDistance: 10
+  patrolStoppingDistance: 3
+  patrolStopTime: 0
+  knockBackDistance: 7
+  knockBackPower: 40
   standardAltitude: 7
   altitudeTolerance: 2
-  moveSpeed: {x: 5, y: 3}
+  moveSpeed: {x: 3, y: 1}
+  rotationSpeed: 100
   maxHp: 100
-  damage: 0
+  bodyDamage: 3
+  weakpointDamage: 7
+  bulletInterval: 3
+  searchDistance: 20
